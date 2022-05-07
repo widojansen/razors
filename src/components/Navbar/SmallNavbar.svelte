@@ -1,0 +1,20 @@
+<script>
+ // cart button
+ // global store
+ import {link} from 'svelte-routing';
+ import CartButton from '../Cart/CartButton.svelte';
+ import globalStore from '../../stores/globalstore';
+</script>
+
+<nav class="navbar">
+ <div class="nav-center">
+  <!-- side bar toggle-->
+  <button class="btn-sidebar-toggle" on:click={()=>globalStore.toggleItem('sidebar', true)}><i class="fas fa-bars"></i></button>
+  <!-- logo -->
+  <a href="/" use:link class="nav-logo">
+   <img src="/assets/images/logo.svg" class="logo" alt="razors logo">
+  </a>
+  <!-- cart button -->
+  <CartButton />
+ </div>
+</nav>
