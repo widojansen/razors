@@ -1,6 +1,5 @@
 <script>
  export let id;
- export let location;
  // global store
  import products from '../stores/defaultProducts';
  import {addToCart} from '../stores/cart';
