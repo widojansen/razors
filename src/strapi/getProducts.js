@@ -14,17 +14,24 @@ export default async() => {
   let products = [];
   let data = response.data;
   data.forEach(element => {
-   products.push({
-     // mods strapi4 
-     id: element.id,
-     title: element.attributes.title,
-     price: element.attributes.price,
-     description: element.attributes.description,
-     featured: element.attributes.featured,
-     created_at: element.attributes.created_at,
-     updated_at: element.attributes.updated_at,
-     image: `${url}${element.attributes.image.data.attributes.url}`,
-   })
+    // cloudinary
+    let image_url = '';
+    if (element.attributes.image.data.attributes.url.includes('cloudinary')) {
+      image_url = element.attributes.image.data.attributes.url;
+    } else {
+      image_url = `${url}${element.attributes.image.data.attributes.url}`;
+    }
+    products.push({
+      // mods strapi4
+      id: element.id,
+      title: element.attributes.title,
+      price: element.attributes.price,
+      description: element.attributes.description,
+      featured: true, //element.attributes.featured,
+      created_at: element.attributes.created_at,
+      updated_at: element.attributes.updated_at,
+      image: image_url,
+    })
   });
   return products
  }
